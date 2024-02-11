@@ -34,7 +34,7 @@ pipeline {
                 script {
                     sh 'sudo docker build -t my-flask-app_jenkins .'
                     sh 'sudo docker tag my-flask-app_jenkins prachi24oracle/my-flask-app_jenkins:latest'
-                    sh 'sudo docker login -u ${prachi24oracle} -p ${sl28@Prachi}'
+                    sh 'sudo docker login -u prachi24oracle -p sl28@Prachi'
                     sh 'sudo docker push prachi24oracle/my-flask-app_jenkins:latest'           
                 }
             }
