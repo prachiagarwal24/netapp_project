@@ -6,7 +6,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 // Install Flask inside the virtual environment
-                sh 'echo NetAPP$Trident1M1M | sudo -S apt-get install python3-flask'
+                sh 'apt-get install python3-flask'
             }
         }
         stage('Test and Run Flask App') {
