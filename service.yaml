@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-flask-app_jenkins
+  name: my-flask-service
 spec:
   selector:
-    app: my-flask-app_jenkins
+    app: my-flask-app
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 5000
   type: LoadBalancer
