@@ -1,12 +1,6 @@
 pipeline {
     agent any
         
-    environment {
-        DOCKER_HUB_USERNAME = credentials('prachi24oracle')
-        DOCKER_HUB_PASSWORD = credentials('sl28@Prachi')
-        DOCKER_HUB_REPO = 'prachi24oracle/my-flask-app_jenkins' // Replace with your Docker Hub repository name
-        DOCKER_IMAGE_TAG = 'latest'
-    }
     stages {
 
         stage('Install dependencies') {
@@ -38,18 +32,10 @@ pipeline {
             steps {
                 // Build Docker image using Dockerfile
                 script {
-                    docker.build("${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}", '.')
-                }
-            }
-        }
-        stage('Log in to Docker Hub') {
-            steps {
-                // Log in to Docker Hub
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD) {
-                        // Push Docker image to Docker Hub
-                        docker.image("${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}").push()
-                    }
+                    sh 'docker build -t my-flask-app_jenkins .'
+                    sh 'docker tag my-flask-app_jenkins prachi24oracle/my-flask-app_jenkins:latest'
+                    sh 'docker login -u ${prachi24oracle} -p ${sl28@Prachi}'
+                    sh 'docker push prachi24oracle/my-flask-app_jenkins:latest'           
                 }
             }
         }
