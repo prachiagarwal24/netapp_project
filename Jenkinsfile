@@ -27,5 +27,32 @@ pipeline {
                 sh 'curl http://localhost:5000' // Send a request to the Flask app
             }
         }
+    environment {
+        DOCKER_HUB_USERNAME = credentials('prachi24oracle')
+        DOCKER_HUB_PASSWORD = credentials('sl28@Prachi')
+        DOCKER_HUB_REPO = 'prachi24oracle/my-flask-app_jenkins' // Replace with your Docker Hub repository name
+        DOCKER_IMAGE_TAG = 'latest'
+    }
+    
+        stage('Build Docker Image') {
+            steps {
+                // Build Docker image using Dockerfile
+                script {
+                    docker.build("${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}", '.')
+                }
+            }
+        }
+        stage('Log in to Docker Hub') {
+            steps {
+                // Log in to Docker Hub
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD) {
+                        // Push Docker image to Docker Hub
+                        docker.image("${DOCKER_HUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                    }
+                }
+            }
+        }
+    }
     }
 }
