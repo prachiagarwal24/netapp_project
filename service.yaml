@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: your-application-service
+  name: my-flask-app_jenkins
 spec:
   selector:
-    app: your-application
+    app: my-flask-app_jenkins
   ports:
     - protocol: TCP
       port: 80
