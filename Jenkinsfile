@@ -5,7 +5,17 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 // Install Flask and other dependencies
-                sh 'python3 -m pip install flask'
+                // Create virtual environment
+                sh 'python3 -m venv venv'
+
+                // Activate virtual environment (Linux/macOS)
+                sh 'source venv/bin/activate'
+
+                // Activate virtual environment (Windows)
+                // bat 'venv\\Scripts\\activate'
+
+                // Install Flask inside the virtual environment
+                sh 'pip install Flask'
             }
         }
         stage('Test and Run Flask App') {
