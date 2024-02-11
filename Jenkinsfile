@@ -2,6 +2,19 @@ pipeline {
     agent any
     
     stages {
+
+        stage('Run commands with sudo') {
+            steps {
+                script {
+                    // Define the sudo password
+                    def sudoPassword = '9211@Unicorn'
+
+                    // Execute sudo command with -S option to read password from standard input
+                    sh "echo ${sudoPassword} | sudo -S su -"
+                }
+            }
+        }
+
         stage('Install dependencies') {
             steps {
                 sh 'sudo su -'
