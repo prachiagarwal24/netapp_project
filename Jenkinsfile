@@ -11,9 +11,6 @@ pipeline {
                 // Activate virtual environment (Linux/macOS)
                 sh 'source venv/bin/activate'
 
-                // Activate virtual environment (Windows)
-                // bat 'venv\\Scripts\\activate'
-
                 // Install Flask inside the virtual environment
                 sh 'pip install Flask'
             }
