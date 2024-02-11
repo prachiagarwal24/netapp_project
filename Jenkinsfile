@@ -15,7 +15,7 @@ pipeline {
                 // You can run automated tests for your Flask app here
                 
                 // Run Flask app
-                sh 'python hello.py &'
+                sh 'python3 hello.py &'
                 // & at the end to run Flask app in background
             }
         }
