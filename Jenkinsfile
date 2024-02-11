@@ -5,7 +5,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 // Install Flask and other dependencies
-                sh 'python -m pip install flask'
+                sh 'python3 -m pip install flask'
             }
         }
         stage('Test and Run Flask App') {
@@ -14,7 +14,7 @@ pipeline {
                 // You can run automated tests for your Flask app here
                 
                 // Run Flask app
-                sh 'python app.py &'
+                sh 'python hello.py &'
                 // & at the end to run Flask app in background
             }
         }
