@@ -5,9 +5,8 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'sudo su -'
                 // Install Flask inside the virtual environment
-                sh 'apt install python3-flask'
+                sh 'apt install python3-flask -S'
             }
         }
         stage('Test and Run Flask App') {
